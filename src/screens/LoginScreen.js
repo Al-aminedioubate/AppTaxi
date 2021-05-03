@@ -8,11 +8,14 @@ const { width, height} = Dimensions.get('window');
 
 import Block from '../components/Block';
 import Title from '../components/Title';
-import {prefix} from '../utils/Helpers';
+import {auth, prefix} from '../utils/Helpers';
 import LoginBtn from '../components/LoginBtn';
 
 const LoginScreen = (props) => {
     const {container,icon, container_2, titleContainer} = styles;
+    const handleLogin = () => {
+        auth();
+    }
     return (
         <View style={container}>
             <Block>
@@ -24,7 +27,7 @@ const LoginScreen = (props) => {
                     <Title content="Authentification" size="small"/>
                     <Title content="Google Connexion" size="medium"/>
                 </View>
-                <LoginBtn/>
+                <LoginBtn onPress={handleLogin}/>
             </View>
         </View>
            

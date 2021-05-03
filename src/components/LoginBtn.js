@@ -8,10 +8,10 @@ import logo from '../../assets/images/google.png';
 import Title from './Title';
 
 
-const LoginBtn = (props) => {
+const LoginBtn = ({onPress}) => {
     const {logoImg, container} = styles;
     return(
-        <TouchableOpacity>
+        <TouchableOpacity onPress={onPress}>
             <View style={container}>
                 <Title size="small" content="Google connexion"/>
                 <Image source={logo} style={logoImg}/>
