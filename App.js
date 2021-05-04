@@ -11,15 +11,22 @@ const { Navigator, Screen} = createStackNavigator();
 //Importation des ecrans 
 import LoginScreen from './src/screens/LoginScreen';
 import HomeScreen from './src/screens/HomeScreen';
+import renderInitialScreen  from './src/utils/Helpers';
 
 export default function App() {
   const [loading, setLoading] = useState(true);
+  const [initialScreen, setInitialScreen] = useState("Login");
+
   const loadRessources = async () => {
     try{
       await Font.loadAsync({
         Poppins: require("./assets/fonts/Poppins-Regular.ttf"),
         LeckerliOne: require("./assets/fonts/LeckerliOne-Regular.ttf")
       });
+
+      const screen = await renderInitialScreen();    //mon ecran initial ne fonctionne pas encore
+      if(screen) setInitialScreen(screen);
+
       setLoading(false);
     }catch(e){
       console.error("Error loading ressources",e);
@@ -38,7 +45,7 @@ export default function App() {
   }, []);
   return (
     <NavigationContainer>
-      <Navigator screenOptions={{headerShown: false}}>
+      <Navigator initialRouteName={initialScreen} screenOptions={{headerShown: false}}>
         <Screen name="Login" component={LoginScreen}/>
         <Screen name="Home" component={HomeScreen}/>
       </Navigator>

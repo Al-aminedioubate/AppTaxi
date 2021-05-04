@@ -30,4 +30,14 @@ export const auth = async () => {
     }catch(e){
         console.error("error auth",e);
     }
-}
+};
+
+export const renderInitialScreen = async() => {
+    try{
+        const user = await AsyncStorage.getItem('user');
+        JSON.parse(user);
+        return user ? "Home" : "Login";
+    }catch(e){
+        console.error("error render Initial Screen", e);
+    }
+};
